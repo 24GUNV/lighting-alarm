@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
 
-url = "https://lxapp.weatherbug.net/v2/lxapp_impl.html?lat=13.75398&lon=100.50144&v=1.2.0"
+url = "https://lxapp.weatherbug.net/v2/lxapp_impl.html?lat=13.66744&lon=100.64206&v=1.2.0"
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
