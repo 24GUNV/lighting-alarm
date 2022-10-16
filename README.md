@@ -1,8 +1,7 @@
 # Lightning Alarm Tool
 
-We scrape data off weatherbug website for data about how close lightning is to our current school. 
-If lightning is within 5km of school perimeter, an automatic signal will be sent out to a microcontroller to automatically activate
-the lightning alarm
+This program periodically scrapes data off [WeatherBug](https://www.weatherbug.com/) to see how close lightning is to our school. 
+If lightning is within 5km of school perimeter, an automatic signal will be sent out to a microcontroller to automatically activate a lightning alarm system.
 
 ## Scraped data
 Example of the output of the scraped data
