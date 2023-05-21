@@ -12,4 +12,4 @@ Map from Weatherbug
 
 ## Usage
 Download the code onto your microcontroller, make sure libraries are installed and run the program
-TODO
+
