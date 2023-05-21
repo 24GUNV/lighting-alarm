@@ -66,4 +66,4 @@ To do:
 ## Contact
 Created by [@24GUNV](https://github.com/24GUNV) - feel free to contact me!
 
-Created by [@Chakr3y]((https://github.com/Chakr3y))
+Created by [@Chakr3y](https://github.com/Chakr3y)
