@@ -19,7 +19,7 @@ This program periodically scrapes data off [WeatherBug](https://www.weatherbug.c
 
 
 ## Technologies Used
-- WiringPi - version 
+- WiringPi - version 2.60.1
 - Selenium - version 4.9.1
 - beautifulsoup4 - version 4.11.1
 
