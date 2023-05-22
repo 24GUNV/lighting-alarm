@@ -18,6 +18,7 @@ class Scraper():
 		chrome_options.add_argument('--headless')
 		chrome_options.add_argument('--no-sandbox')
 		chrome_options.add_argument('disable-dev-shm-usage')
+		chrome_options.add_argument('--disable-gpu')
 
 		# Loading url into webdriver
 		self.driver = webdriver.Chrome('chromedriver', options = chrome_options)
@@ -28,9 +29,9 @@ class Scraper():
 		# Checks whether the webpage is still updating
 		originalPage = BeautifulSoup(self.driver.page_source, "html.parser")
 		distance=originalPage.find_all('span', class_="closest-strike-distance")[0].text
-
+		
 		time.sleep(1)
-
+ 
 		newPage = BeautifulSoup(self.driver.page_source, "html.parser")
 		newDistance = newPage.find_all('span', class_="closest-strike-distance")[0].text
 
@@ -40,7 +41,7 @@ class Scraper():
 			distance=newDistance
 
 			time.sleep(1)
-			newPage = BeautifulSoup(driver.page_source, "html.parser")
+			newPage = BeautifulSoup(self.driver.page_source, "html.parser")
 			newDistance = newPage.find_all('span', class_="closest-strike-distance")[0].text
 		
 		else:
