@@ -11,7 +11,7 @@ wiringpi.wiringPiSetupGpio()
 wiringpi.pinMode(5, 1)
 
 # Scraper setup
-scraper = Scraper("https://lxapp.weatherbug.net/v2/lxapp_impl.html?lat=13.75398&v=1.2.0")
+scraper = Scraper("https://lxapp.weatherbug.net/v2/lxapp_impl.html?lat=13.66744&lon=100.64206&v=1.2.0")
 
 # Logger setup
 logging.basicConfig(filename='log.txt',
