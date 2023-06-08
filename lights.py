@@ -1,6 +1,7 @@
 import wiringpi
 import time, logging
 from scrape import Scraper
+import re
 
 # Constants
 DANGERDISTANCE = 50 #km
@@ -16,7 +17,6 @@ scraper = Scraper("https://lxapp.weatherbug.net/v2/lxapp_impl.html?lat=13.75398&
 logging.basicConfig(filename='log.txt',
 					filemode='a',
 					format='%(asctime)s %(name)s %(levelname)s- %(message)s',
-			 		encoding='utf-8',
 					datefmt='%H:%M:%S',
 					level=logging.NOTSET)
 logging.disable(logging.DEBUG)
@@ -29,8 +29,11 @@ try:
 	while (True):
 		distance = scraper.findDistance()
 
+		if re.match(r'^-?\d+(?:\.\d+)$', distance) is None: # Checks whether distance isnt a float
+			continue
+
 		# Checks if distance is in danger area
-		if (distance.isnumeric() and int(distance) < DANGERDISTANCE):
+		if (float(distance) < DANGERDISTANCE):
 			if (not inArea):
 				logging.info("Lightning entered area")
 				inArea = True
