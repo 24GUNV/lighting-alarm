@@ -55,12 +55,9 @@ Project is: _in progress_
 
 
 ## Room for Improvement
-Room for improvement:
-- More efficient way to check whether website is refreshing
-
 To do:
 - Add more safety checks in the program
-- Make it easier to config
+- Final touches
 
 
 ## Contact
