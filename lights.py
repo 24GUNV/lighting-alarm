@@ -4,7 +4,7 @@ from scrape import Scraper
 import re
 
 # Constants
-DANGERDISTANCE = 50 #km
+DANGERDISTANCE = 5 #km
 
 # GPIO setup
 wiringpi.wiringPiSetupGpio()
@@ -15,50 +15,51 @@ scraper = Scraper("https://lxapp.weatherbug.net/v2/lxapp_impl.html?lat=13.66744&
 
 # Logger setup
 logging.basicConfig(filename='log.txt',
-					filemode='a',
-					format='%(asctime)s %(name)s %(levelname)s- %(message)s',
-					datefmt='%H:%M:%S',
-					level=logging.NOTSET)
+                    filemode='a',
+                    format='%(asctime)s %(name)s %(levelname)s- %(message)s',
+                    datefmt='%H:%M:%S',
+                    level=logging.NOTSET)
 logging.disable(logging.DEBUG)
 logging.getLogger("selenium.webdriver.common.selenium_manager").disabled = True
 logging = logging.getLogger("Lightning-Alarm")
 
 
 try:
-	inArea = False
-	while (True):
-		distance = scraper.findDistance()
+    inArea = False
+    while (True):
+        distance = scraper.findDistance()
+        if re.match(r'^-?\d+(?:\.\d+)$', distance) is None: # Checks for if it isnt a float
+            continue
 
-		if re.match(r'^-?\d+(?:\.\d+)$', distance) is None: # Checks whether distance isnt a float
-			continue
+        logging.info(f"Distance: {distance}")
 
-		# Checks if distance is in danger area
-		if (float(distance) < DANGERDISTANCE):
-			if (not inArea):
-				logging.info("Lightning entered area")
-				inArea = True
+        # Checks if distance is in danger area
+        if (float(distance) < DANGERDISTANCE):
+            if (not inArea):
+                logging.info("Lightning entered area")
+                inArea = True
 
-			# Outputs to the wires
-			wiringpi.digitalWrite(5, 1)
-			wiringpi.digitalWrite(6, 1)
-		else:
-			if (inArea):
-				inArea = False
-				logging.info("Lightning left area")
+            # Outputs to the wires
+            wiringpi.digitalWrite(5, 1)
+            wiringpi.digitalWrite(6, 1)
 
-			wiringpi.digitalWrite(5, 0)
-			wiringpi.digitalWrite(6, 0)
+        else:
+            if (inArea):
+                inArea = False
+                logging.info("Lightning left area")
 
+            wiringpi.digitalWrite(5, 0)
+            wiringpi.digitalWrite(6, 0)
 
-		logging.info(f"Distance: {distance} ")
+        time.sleep(300)
 
-		time.sleep(300) # Next cycle in 5 minutes
 
 except KeyboardInterrupt:
-	logging.info("User ended program")
+    logging.info("User ended program")
 
-except:
-	logging.fatal("Error detected")
+except Exception as error:
+    logging.fatal("Error detected")
+    print(error)
 
 finally:
 	wiringpi.digitalWrite(5, 0)
