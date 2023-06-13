@@ -17,7 +17,7 @@ scraper = Scraper("https://lxapp.weatherbug.net/v2/lxapp_impl.html?lat=13.66744&
 # Logger setup
 logging.basicConfig(filename='log.txt',
                     filemode='a',
-                    format='%(asctime)s %(name)s %(levelname)s- %(message)s',
+                    format='[%(asctime)s] %(name)s %(levelname)s- %(message)s',
                     datefmt='%H:%M:%S',
                     level=logging.NOTSET)
 logging.disable(logging.DEBUG)
