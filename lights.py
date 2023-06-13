@@ -4,7 +4,8 @@ from scrape import Scraper
 import re
 
 # Constants
-DANGERDISTANCE = 5 #km
+ # Threshold distance for warning (in km)
+DANGERDISTANCE = 5
 
 # GPIO setup
 wiringpi.wiringPiSetupGpio()
