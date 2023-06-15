@@ -46,6 +46,7 @@ Make sure that port 5 or port 6 of the microcontroller is connected to the light
 
 ## Usage
 `python lights.py`
+Note: This program is intended to be ran on a microcontroller. An error will occur otherwise.
 
 
 ## Project Status
