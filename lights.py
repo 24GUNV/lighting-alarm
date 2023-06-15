@@ -1,7 +1,7 @@
-import wiringpi
 import time, logging
-from scrape import Scraper
 import re
+import wiringpi
+from scrape import Scraper
 
 # Constants
  # Threshold distance for warning (in km)
@@ -27,7 +27,7 @@ logging = logging.getLogger("Lightning-Alarm")
 
 try:
     inArea = False
-    while (True):
+    while True:
         distance = scraper.findDistance()
         if re.match(r'^-?\d+(?:\.\d+)$', distance) is None: # Checks for if it isnt a float
             continue
@@ -35,8 +35,8 @@ try:
         logging.info(f"Distance: {distance}")
 
         # Checks if distance is in danger area
-        if (float(distance) < DANGERDISTANCE):
-            if (not inArea):
+        if float(distance) < DANGERDISTANCE:
+            if not inArea:
                 logging.info("Lightning entered area")
                 inArea = True
 
@@ -45,7 +45,7 @@ try:
             wiringpi.digitalWrite(6, 1)
 
         else:
-            if (inArea):
+            if inArea:
                 inArea = False
                 logging.info("Lightning left area")
 
@@ -63,7 +63,7 @@ except Exception as error:
     print(error)
 
 finally:
-	wiringpi.digitalWrite(5, 0)
-	wiringpi.digitalWrite(6, 0)
-	scraper.closeScraper()
-	logging.info("Ending program")
+    wiringpi.digitalWrite(5, 0)
+    wiringpi.digitalWrite(6, 0)
+    scraper.closeScraper()
+    logging.info("Ending program")

@@ -1,9 +1,9 @@
 # Lightning Alarm Tool
-This program periodically scrapes data off [WeatherBug](https://www.weatherbug.com/) to see how close lightning is to our school. A microcontroller then sends signals out accordingly
+This program is run on a microcontroller to periodically scrape data off [WeatherBug](https://www.weatherbug.com/) to see how close lightning is to our school. A wiring signal is sent to turn on the lightning alert system if the distance drops below a certain threshold.
 
 ## Table of Contents
 * [General Info](#general-information)
-* [Technologies Used](#technologies-used)
+* [Dependencies](#dependencies)
 * [Features](#features)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
@@ -14,11 +14,11 @@ This program periodically scrapes data off [WeatherBug](https://www.weatherbug.c
 
 
 ## General Information
-- The program periodically scrapes data off [WeatherBug](https://www.weatherbug.com/) using a combination of Selenium and Beautiful Soup in order to see how close lightning is a to our school. Based on the data, a signal could be sent out from the microcontroller to turn on and off the lightning alarm lights
-- The program intends to automate activating the lightning alarm lights at the school. Instead of having a teacher manually monitor the distance to the lightning and having to go turn the lights on, the program intends to do it automatically
+- The program periodically scrapes data off [WeatherBug](https://www.weatherbug.com/) using Selenium and Beautiful Soup in order to see how close lightning is to our school. If the nearest lightning strike is within a certain proximity, a signal is sent out from the microcontroller to turn on/off the lightning alarm lights.
+- The program automates the lightning alarm lights at the school. Instead of having a teacher operating the lights, the program automates the process.
 
 
-## Technologies Used
+## Dependencies
 - WiringPi - version 2.60.1
 - Selenium - version 4.9.1
 - beautifulsoup4 - version 4.11.1
@@ -40,9 +40,7 @@ Map from Weatherbug
 
 ## Setup
 Install the required libraries
-``pip install wiringpi``
-``pip install selenium``
-``pip install beautifulsoup4``
+``pip install -r requirements.txt``
 
 Make sure that port 5 or port 6 of the microcontroller is connected to the lights
 

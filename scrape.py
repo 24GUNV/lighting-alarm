@@ -1,11 +1,12 @@
+import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import time
 
 # Web address for data scraping
+# can be commented out?
 url = "https://lxapp.weatherbug.net/v2/lxapp_impl.html?lat=13.66744&lon=100.64206&v=1.2.0"
 
 
@@ -31,7 +32,7 @@ class Scraper():
 		distance=originalPage.find_all('span', class_="closest-strike-distance")[0].text
 		
 		time.sleep(1)
- 
+
 		newPage = BeautifulSoup(self.driver.page_source, "html.parser")
 		newDistance = newPage.find_all('span', class_="closest-strike-distance")[0].text
 
